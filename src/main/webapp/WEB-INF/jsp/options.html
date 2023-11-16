@@ -1,0 +1,153 @@
+                    <div class="row g-2 justify-content-center text-center">
+                         <div class="col-sm-5">     
+                             <div class="panel-heading eng">Services</div>
+                             <div class="rounded-box">
+                                 <div class="form-group p-3">
+                                 	<div class="row">
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="47" 
+						                													onclick="loadFormContainer(this.value)">Title Transfer/Name Correction</button>
+						                </div>
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="41" 
+						                													onclick="loadFormContainer(this.value)">Address Correction</button>
+						                </div>
+					                </div>
+					                <div class="row">
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="42" 
+						                													onclick="loadFormContainer(this.value)">Change of Category</button>
+						                </div>
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="40" 
+						                													onclick="loadFormContainer(this.value)">Additional Load</button>
+						                </div>
+					                </div>
+					                <div class="row">
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="48" 
+						                													onclick="loadFormContainer(this.value)">Dismantle of Service</button>
+						                </div>
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="62" 
+						                													onclick="loadFormContainer(this.value)">Shifting of Pole/Line</button>
+						                </div>
+						            </div>
+						            <div class="row">   	 
+						                <div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="79" 
+						                													onclick="loadFormContainer(this.value)">Load Deration</button>
+						                </div>
+						          		<div class="form-group p-2 col-sm-5 m-auto">				              
+						                	<button type="button" class="btn-block border border-secondary rounded" value="71" 
+						                													onclick="loadFormContainer(this.value)">Temporary Supply</button>
+						                </div>
+					                </div>
+					                
+					                <div class="form-group input-group col-sm-8 mx-auto mt-2">
+				                          <select class="floating-select"  id="other_services" name="other_services"
+				                              onclick="this.setAttribute('value', this.value);" 
+				                              onchange="loadFormContainer(this.value);" value="">
+				                              	<option value=""></option>
+												<option value="89">Shifting of Meters to Panel Board</option>
+												<option value="43">Shifting of Distribution Transformer</option>
+												<option value="78">Erection of Line</option>
+												<option value="64">Providing of Side Arm</option>
+												<option value="63">Providing of Seal Bit</option>
+												<option value="45">Providing of Additional Poles</option>
+												<option value="24">Shifting of Meter ( 1-Phase )</option>
+												<option value="59">Shifting of Meter ( 3-Phase )</option>
+												<option value="56">Enhancement Distribution Transformer</option>
+												<option value="53">Shifting of Service ( 1-Phase )</option>
+												<option value="54">Shifting of Service ( 3-Phase )</option>
+												<option value="81">Load Restoration ( LT )</option>
+												<option value="69">Clubbing of LT Services</option>
+												<option value="9">OSL to Live</option>
+												<option value="90">Providing of Sub-Meter in IT-SEZ Area</option>
+												<option value="91">NHAI Road Widening</option>
+				                          </select>
+				                          <label class="floating-label">Other Services</label>	     
+				                    </div> 
+					             </div>
+					          </div>
+					      </div>
+					      <div class="col-sm-1 align-self-center">  
+					      -OR-
+					      </div>
+					      <div class="col-sm-5">     
+                             <div class="panel-heading eng">Complaints</div>
+                             <div class="rounded-box">
+                                 <div class="form-group row p-3">                                            
+				                   	<div class="form-group input-group col-sm-8 mx-auto mt-1">
+				                          <select class="floating-select"  id="supply_cnature" name="supply_cnature"
+				                              onclick="this.setAttribute('value', this.value);" 
+				                              onchange="loadFormContainer(this.value);" value="">
+				                              	<option value=""></option>
+												<option value="11">Supply Failure-Individual</option>
+												<option value="68">Supply Failure-Total Area/Transformer Failure</option>
+												<option value="18">Low Voltage</option>
+												<option value="17">Voltage Fluctuation</option>
+												<option value="8">Service Wire Loose Connection/Broken/Carbon Form</option>
+												<option value="10">Transformer Supply Failed ( 1-Phase Out)</option>
+												<option value="16">High Voltage</option>
+												<option value="73">Reconnection of Service</option>
+												<option value="3">Tree Branches Touching Line</option>
+												<option value="57">Phase Correction</option>
+				                          </select>
+				                          <label class="floating-label">Supply Related</label>	     
+				                    </div> 
+				                    <div class="form-group input-group col-sm-8 mx-auto mt-1">
+				                          <select class="floating-select"   id="meter_cnature" name="meter_cnature"
+				                              onclick="this.setAttribute('value', this.value);" 
+				                              onchange="loadFormContainer(this.value);" value="">
+				                              	<option value=""></option>
+												<option value="MB">Meter Burnt</option>
+												<option value="MTC">Meter Testing/Challenging</option>
+												<!-- <option value="MC">Meter Challenging</option> -->
+												<option value="21">Meter Stuck-Up</option>
+												<option value="23">Other Meter Defects</option>											
+				                          </select>
+				                          <label class="floating-label">Meter Related</label>	     
+				                    </div>
+				                    <div class="form-group input-group col-sm-8 mx-auto mt-1">
+				                          <select class="floating-select"   id="billing_cnature" name="billing_cnature"
+				                              onclick="this.setAttribute('value', this.value);" 
+				                              onchange="loadFormContainer(this.value);" value="">
+				                              	<option value=""></option>
+												<option value="39">Wrong Billing</option>
+												<option value="84">Double Payment Made</option>
+												<option value="86">Amount not Credited</option>
+												<option value="85">Transaction Failure</option>		
+												<option value="27">Arrears Dispute</option>
+												<option value="88">Late Bill Issue</option>
+												<option value="31">Wrongful disconnection of service connection</option>		
+												<option value="29">Levy of reconnection charges without disconnection</option>								
+				                         		<option value="87">Wrong account Posted</option>
+				                         		<option value="30">Door Lock Cases</option>
+				                          </select>
+				                          <label class="floating-label">Billing Related</label>	     
+				                    </div>  
+				                    <div class="form-group input-group col-sm-8 mx-auto mt-1">
+				                          <select class="floating-select"  id="other_cnature" name="other_cnature"
+				                              onclick="this.setAttribute('value', this.value);" 
+				                              onchange="loadFormContainer(this.value);" value="">
+				                              	<option value=""></option>
+												<option value="15">Sparking at Transformer or Pole</option>
+												<option value="14">Smoke or Flames at Transformer</option>
+												<option value="13">Oil Leaking at Transformer</option>
+												<option value="5">Pole Leaning</option>
+												<option value="6">Pole Rusted/Damaged</option>
+												<option value="4">Pole Fell Down</option>		
+												<option value="7">Pole Shock</option>
+												<option value="76">Transformer Testing</option>								
+				                         		<option value="38">Representation/Suspicion of Theft</option>
+				                         		<option value="104">Damage to Electrical Equipment by 3rd Party</option>	
+				                         		<option value="67">Extension to 24hrs Supply</option>				                         		
+				                         		<option value="66">Other</option>				                         		
+				                          </select>
+				                          <label class="floating-label">Other Complaints</label>	     
+				                    </div>
+				                 </div> 
+				              </div> 
+				           </div> 
+				       </div>

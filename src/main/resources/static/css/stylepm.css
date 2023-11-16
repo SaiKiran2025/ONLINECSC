@@ -1,0 +1,153 @@
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth !important;
+}
+
+:root{
+    --spdcl-blue : #1a54a5;
+    --white : #fff;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: R-apple-system, Roboto, SegoeUI, 'Segoe UI', 'Helvetica Neue', Helvetica, 'Microsoft YaHei', 'Meiryo UI', Meiryo, Arial Unicode MS, sans-serif;
+    font-size: 1.5rem;
+    overflow-x: hidden;
+    margin:0;
+    background : #FFF;
+    }
+
+.topbar{
+    background-image: url(../images/tsspdcllogo.png);
+    height: 8rem;
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top:1.5rem;
+    max-width : 1140px;
+    margin: auto;
+}
+
+.navbar{
+    background-color: var(--spdcl-blue);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h3{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-size:2.2rem;
+    margin-top: 0.5rem;
+}
+
+.tablehead{
+	font-size: 2rem;
+    margin: 2rem;
+    text-align: center;
+    font-weight: 400;
+    color : rgb(20, 96, 183);
+}
+
+.divButton{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    
+}
+
+.btn{
+    border-radius:40px;
+    padding: 0.7rem 3rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    
+}
+
+.btn--primary{
+	font-size:2rem;
+    background: #fff;
+    color: rgb(16, 88, 170);
+    border: 2px solid rgb(16, 88, 170);
+}
+
+.btn--primary:hover{
+    background: rgb(16, 88, 170);
+    color: #fff;
+}
+
+.footermain{
+	background-color:rgb(16, 88, 170);	
+}
+
+.footerdiv{
+	display : flex;
+	flex-direction : column;
+	color:#fff;
+	margin-top:5rem;
+	margin-bottom:0;
+	font-size : 1.2rem;
+	font-weight:400; 
+	padding : 4rem 0;
+	max-width: 1300px;	
+	text-align : center;
+}
+
+.footerpara{
+	padding-left:1rem;
+}
+.footerpara1{
+	padding-left:1rem;
+	padding-top : 1.2rem;
+}
+
+@media screen and (min-width:768px) {
+	
+		.topbar{
+		    background-image: url(../images/tsspdcllogo.png), url(../images/Emblem_of_Telangana3.png);
+		    background-position: left top, right top;
+		}
+		h1{
+	    	font-size: 2rem;
+		}
+}
+
+
+@media screen and (min-width:992px) {	
+	h1{
+    font-size: 2.2rem;
+	}
+	.footerdiv{
+	flex-direction : row;
+	justify-content: space-around;
+	text-align : unset;
+	margin-left : 10rem;
+	}
+    .footerpara{
+	padding-left:10rem;
+	}
+	.footerpara1{ 
+	padding-right:10rem;
+	padding-top:0;
+	}
+}
+
+@media screen and (min-height:1200px) {
+	
+		.footerdiv{
+			flex-direction : row;
+			justify-content: space-around;
+			position : fixed;
+		    bottom : 0;
+		    width: 100%;
+		}
+}

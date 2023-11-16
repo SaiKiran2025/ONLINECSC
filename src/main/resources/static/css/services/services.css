@@ -1,0 +1,369 @@
+/*****************************************************************
+    Template Name    : TSSPDCL - Online CSC Registration
+    Author           : Cute Themes
+    Version          : 1.0
+    Created          : 2023
+*****************************************************************/
+
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	font-variant: normal;
+	overflow-x: hidden;
+	/*transition: all .2s ease-out;
+	-webkit-transition: all .2s ease-out;*/
+	
+	overflow-y: scroll;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+button {
+	outline: 0 !important;
+}
+
+.d-table {
+	width: 100%;
+	height: 100%;
+}
+
+.d-table-cell {
+	vertical-align: middle;
+}
+
+
+.pt-70 {
+	padding-top: 70px;
+}
+
+
+.pb-100 {
+	padding-bottom: 100px;
+}
+
+.pt-100 {
+	padding-top: 100px;
+}
+
+
+
+a {
+	text-decoration: none;
+	-webkit-transition: all 400ms ease-out;
+	transition: all 400ms ease-out;
+	will-change: transform;
+	outline: 0 !important;
+	color: #333;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #5764ec;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0;
+	
+}
+
+
+.section-title {
+	text-align: center;
+	margin-bottom: 65px;
+}
+
+.section-title h6 {
+    font-size: 15px;
+    color: #ff561d;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+	font-size: 38px;
+	color: #333;
+	font-weight: 800;
+	margin: 0;
+}
+
+/**************************************
+ ** - 01.1 - Preloader Area CSS
+ **************************************/
+.techSoft-preloader {
+	background: #fff;
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 99999;
+    width: 100%;
+    height: 100%;
+}
+.techSoft-preloader svg {
+	bottom: 0;
+	height: 70px;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 70px;
+}
+.techSoft-preloader svg polygon {
+	stroke-dasharray: 17;
+	-webkit-animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;
+	animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;
+}
+.loader-text {
+	color: #5764ec;
+	left: 0;
+	font-size: 16px;
+	letter-spacing: 2px;
+	margin-top: 55px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+}
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 136;
+  }
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 136;
+  }
+}
+
+/*******************************************
+ ** - 05.01 - Services Section CSS
+ *******************************************/
+
+.section-title .title h1{
+	position: relative;
+	display: inline-block;
+	font-size: 30px;
+	/*color: #0c73ff;*/
+	 color: #085DAA;
+	font-weight: bold;
+	margin: 9px 0;
+	padding: 0 10px 0 0px;
+}
+
+.single-services-box-2 {
+	position: relative;
+	z-index: 1;
+	padding: 20px 10px;
+	text-align: center;
+	border-radius: 0px;
+	background-color: #ffffff;
+	margin-bottom: 30px;
+	-webkit-box-shadow: -1px 3px 20px 0px rgba(82, 90, 101, 0.1);
+	-moz-box-shadow: -1px 3px 20px 0px rgba(82, 90, 101, 0.1);
+	box-shadow: -1px 3px 20px 0px rgba(82, 90, 101, 0.1);
+    -webkit-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    will-change: transform;
+	min-height: 200px;
+}
+
+.single-services-box-2:before {
+	position: absolute;
+	content: "";
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	/*border-bottom: 3px solid #5764ec;*/
+	border-bottom: 3px solid #085DAA;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+	transform: scaleX(0);
+    -webkit-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    will-change: transform;
+}
+
+.single-services-box-2:hover:before {
+	transform: scaleX(1);
+}
+
+.single-services-box-2 .services-icon-2 {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    border: 1px solid #f5f6ff;
+    border-radius: 50%;
+    /*color: #5764ec;*/
+	color: #085DAA;
+	margin-bottom: 15px;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.single-services-box-2:hover .services-icon-2 {
+    /*border-color: #5764ec;*/
+	border-color: #085DAA;
+    color: #ffffff;
+	-webkit-transform: scale(.98);
+	-moz-transform: scale(.98);
+	-ms-transform: scale(.98);
+	-o-transform: scale(.98);
+	transform: scale(.98);
+	cursor: pointer;
+
+}
+
+.single-services-box-2 .services-icon-2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #f5f6ff;
+    z-index: -1;
+    border-radius: 50%;
+    margin: 5px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+
+}
+
+.single-services-box-2:hover  .services-icon-2::before {
+    /*background: #5764ec;*/
+	background: #085DAA;
+
+}
+
+.single-services-box-2 .services-btn .services-btn-one {
+	display: inline-block;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 700;
+	background-color: #085DAA;
+	border-radius: 5px;
+	padding: 5px 8px;
+	background-image: linear-gradient(135deg, #ff561d 0%, #ff561d 50%, #085DAA 50%, #085DAA 100%);
+    background-position: right center;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-property: color, background;
+    transition-property: color, background;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+    background-size: 270% auto;
+}
+
+.single-services-box-2 .services-btn .services-btn-one::before {
+	display: inline-block;
+    color: #ffffff;
+    background-color: #085DAA;
+}
+
+.single-services-box-2:hover .services-btn .services-btn-one {
+	background-position: left center;
+	-webkit-box-shadow: unset !important;
+	-moz-box-shadow: unset !important;
+	box-shadow: unset !important;
+}
+
+.single-services-box-2 .service-read-more {
+	float:right; margin-top:-18px; font-size: 14px; font-weight:normal; opacity: .4
+}
+
+.single-services-box-2 .service-read-more:hover {
+	opacity: 1
+}	
+
+.single-services-box-2 .services-icon-2 i::before {
+    font-size: 55px;
+}
+
+.single-services-box-2 h3 {
+	font-size: 18px;
+	margin-bottom: 0;
+    -webkit-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    will-change: transform;
+}
+
+.single-services-box-2 h3 a {
+  display: inline-block;
+}
+
+.single-services-box-2 p {
+  font-size: 16px;
+    -webkit-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+    will-change: transform;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.single-services-box-2 .services-btn {
+  margin-top: 10px;
+}
+
+.single-services-box-2 .services-btn i {
+  position: relative;
+  color: #5764ec;
+  top: 1px;
+  font-weight: bold;
+    -webkit-transition: all 400ms ease-out;
+    transition: all 400ms ease-out;
+}
+
+.single-services-box-2 .services-btn i::before {
+  font-size: 14px;
+}
+
+.single-services-box-2:hover {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+.single-services-box-2:hover h3 {
+  color: #333;
+}
+
+.single-services-box-2:hover h3 a {
+  color: #333;
+}
+
+.single-services-box-2:hover p {
+  color: #333;
+}
+
+.single-services-box-2:hover .services-btn .services-btn-one {
+  color: #fff;
+}
+
+.single-services-box-2:hover .services-btn i {
+  color: #333;
+}
+.services-more-btn-box {
+    margin-top: 15px;
+}
+
