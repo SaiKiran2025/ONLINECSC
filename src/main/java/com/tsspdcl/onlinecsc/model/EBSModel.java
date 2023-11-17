@@ -21,5 +21,10 @@ public class EBSModel {
 	private int phase;
 	private double existing_sd;
 	
+	private int netmtr_flag;
+	private int ctmtr_flag;
+	private int prepaid_flag;
+	private String meter_ltht_flag;
+	
 	
 }

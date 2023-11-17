@@ -100,14 +100,16 @@ public class InsertCC1 {
 		    			+ " phase, ISMTRREQ,  EXIST_SD, IS_DISPATCHED, STATUS, CREATED_BY, RECORD_STATUS," //check condition for phase and ismtrreq
 		    			+ " GSTN_UPDT, COMPLAINT_GIVEN_ON, CREATE_DATE,"
 		    			+ " COMPLAINT_DETAILS, AMOUNT, OTH_CGST, OTH_SGST,"
-		    			+ " ADV_CC_CH, REQD_LOAD)"
+		    			+ " ADV_CC_CH, REQD_LOAD,"
+		    			+ " NETMETERFLAG, CTMTRFLAG, PREPAIDFLAG, MTRSIDE_HT, SUBCATCD)"
 		    			+ " VALUES(?,?,?,?,?,?,?,?,?,?,"
 						+ 		 " ?,?,?,?,?,?,?,?,?,?,"
 						+ 		 " ?,?,?,?,?,?,?,"
 						+        " ?,?,?,?,?,?,?,"
 						+ 		 " TO_DATE(?,'DD-MM-YY'), TO_DATE(sysdate,'DD-MM-YY'), TO_DATE(sysdate,'DD-MM-YY'), "
 						+ 		 " ?,?,?,?,"
-						+ 		 " ?,? )";
+						+ 		 " ?,?,"
+						+ 		 " ?,?,?,?,?)";
 		    con.setAutoCommit(false);
 			
 			PreparedStatement ps = con.prepareStatement(query);
@@ -158,6 +160,12 @@ public class InsertCC1 {
 	 		
 	 		ps.setString ( 40 , AppData.getOthamount()); 
 	 		ps.setString ( 41 , AppData.getTempload());
+	 		
+	 		ps.setInt	 ( 42 , em.getNetmtr_flag());
+	 		ps.setInt	 ( 43 , em.getCtmtr_flag());
+	 		ps.setInt	 ( 44 , em.getPrepaid_flag());
+	 		ps.setString ( 45 , em.getMeter_ltht_flag());
+	 		ps.setString ( 46 , em.getSubcatcode());
 
 	 		ps.executeUpdate();
 	 		

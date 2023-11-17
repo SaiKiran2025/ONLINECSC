@@ -126,7 +126,8 @@ public class InsertCC {
 		    			+ " NCONNADD1, NCONNADD2, NCONNADD3, NCONNADD4,"
 		    			+ " REQD_CATEGORY_ID,"
 		    			+ " CONS_NEW_NAME, FATHER_HUSBAND_NAME,"
-		    			+ "	CLUBBEDSERVICES, CLB_ADL_LOAD, CLUB_LOAD)"
+		    			+ "	CLUBBEDSERVICES, CLB_ADL_LOAD, CLUB_LOAD,"
+		    			+ " NETMETERFLAG, CTMTRFLAG, PREPAIDFLAG, MTRSIDE_HT, SUBCATCD)"
 		    			+ " VALUES(?,?,?,?,?,?,?,?,?,?,"
 						+ 		 " ?,?,?,?,?,?,?,?,?,?,"
 						+ 		 " ?,?,?,?,?,?,?,?,?,?,"
@@ -135,7 +136,8 @@ public class InsertCC {
 						+ 		 " ?,?,?,?, "
 						+ 		 " ?,"
 						+ 		 " ?,?,"
-						+ 		 " ?,?,?)";
+						+ 		 " ?,?,?,"
+						+ 		 " ?,?,?,?,?)";
 		    con.setAutoCommit(false);
 			
 			PreparedStatement ps = con.prepareStatement(query);
@@ -198,6 +200,12 @@ public class InsertCC {
 	 		ps.setString ( 48 , AppData.getXclubbedUscnos()); 
 	 		ps.setString ( 49 , AppData.getAdditional_load());
 	 		ps.setDouble ( 50 , club_load);//just clubbed load without additional load
+	 		
+	 		ps.setInt	 ( 51 , em.getNetmtr_flag());
+	 		ps.setInt	 ( 52 , em.getCtmtr_flag());
+	 		ps.setInt	 ( 53 , em.getPrepaid_flag());
+	 		ps.setString ( 54 , em.getMeter_ltht_flag());
+	 		ps.setString ( 55 , em.getSubcatcode());
 	 		ps.executeUpdate();
 	
 	 		//Insert Documents for address correction, title transfer, load deration

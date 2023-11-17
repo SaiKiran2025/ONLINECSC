@@ -497,7 +497,7 @@ public class DBMethodsComplaints {
 		String qry = "",metertype="";		
 		
 		try(Connection con = db.getConnection()){
-			qry = "SELECT nvl(CTNETMETERFLAG,0), nvl(MPTCTMTRFLAG,0), nvl(CTPREPAIDFLAG,0), nvl(MPTMTRSIDE_HT,0), nvl(CTMTRPHASE,0) "
+			qry = "SELECT nvl(CTNETMETERFLAG,0), nvl(MPTCTMTRFLAG,0), nvl(CTPREPAIDFLAG,0), nvl(MPTMTRSIDE_HT,'LT'), nvl(CTMTRPHASE,0) "
 					+ " FROM corporate.all_consumer@ebsrodbl A,CATEGORY_MASTER B,ALL_SECTION C WHERE A.CTSECCD=C.SECCD AND A.CTEROCD=C.EROCD AND A.CTCAT=B.ID "
 					+ " AND B.htlt_flag = 'LT' AND A.CTUKSCNO= ? ";
 			System.out.println(qry);
@@ -506,7 +506,7 @@ public class DBMethodsComplaints {
 			ResultSet rs = ps.executeQuery();	
 			if(rs.next()) {
 				if(rs.getString(1).equals("1")) {
-					if(rs.getString(4).equals("1")) {
+					if(rs.getString(4).equals("HT")) {
 						mdm.setMetertype("NTH");
 						mdm.setMetertype_desc("Net Meter (HT)");
 						mdm.setMetertype_cnature("");
@@ -546,7 +546,7 @@ public class DBMethodsComplaints {
 						mdm.setMetertype_cnature("102");
 					}
 				}
-				else if(rs.getString(4).equals("1")) {
+				else if(rs.getString(4).equals("HT")) {
 					mdm.setMetertype("HT");
 					mdm.setMetertype_desc("HT Meter");
 					mdm.setMetertype_cnature(""); // condition yet to be added for HT meter types
