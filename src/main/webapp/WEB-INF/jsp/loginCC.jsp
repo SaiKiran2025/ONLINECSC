@@ -39,7 +39,7 @@ input.is-invalid ~ label{color: red;}
                 </div><!-- ./brand-logo -->
                 <h1>TSSPDCL</h1>
 				<h4>Customer Service Center</h4>
-                <p>Please register with Applicant/Consumer Personal Mobile Number only as future SMS/Alerts shall be sent to this Mobile Number only</p>
+                <p>Please register with Applicant/Consumer Mobile Number as future SMS/Alerts shall be sent to this Mobile Number only</p>
                	<div class="mt-5 knowmore form-group text-center">
                    <input class="text-center" type="button" name="" onclick=" window.open('https://www.tssouthernpower.com/downloads', '_blank'); return false;" value="Download Documents"/>
                 </div>     

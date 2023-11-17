@@ -203,8 +203,13 @@ function getPayments(){
 			document.adl.total_load.value = addl_load;
 	 }
 	if(extension == 'Y'){
+		$("#est_type").attr('disabled', false);
 		toastmsg("Security Deposit and Development Charges will be collected at the time of Estimate Payment",'success');	
 	}
+	if(extension == 'N'){
+		$("#est_type").attr('disabled', true);
+	}
+	
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200)
