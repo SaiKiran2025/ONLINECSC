@@ -48,7 +48,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" id="myhtml" lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
-<title>TSSPDCL-Apartment Service Connection Registration</title>
+<title>TSSPDCL-Complaint/Service Registration</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <meta name="Keywords" content="" />
 <meta name="Description" content="" />
