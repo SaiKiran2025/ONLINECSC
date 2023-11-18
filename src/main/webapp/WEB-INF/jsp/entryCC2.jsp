@@ -130,6 +130,7 @@
 				
 		<input type="hidden" name="xclubbedUscnos" id="xclubbedUscnos">
 		<input type="hidden" name="req_load_club" id="req_load_club">
+		<input type="hidden" name="total_club_load" id="total_club_load">
 		
 		<!-- category-section start -->
         <section class="category-section category-page mr-0 pt-60 pb-90">
@@ -300,7 +301,7 @@
                                      	<div class="form-group input-group col-sm-6">
                                            <select class="floating-select" id="is_adl_req" name="is_adl_req" 
                                                  onclick="this.setAttribute('value', this.value);" 
-                                                 onchange="this.setAttribute('value', this.value);clubAdl();"
+                                                 onchange="this.setAttribute('value', this.value); clubAdl();"
                                                  value="">
                                                  <option value=""></option>
                                                  <option value="Y" >Yes</option>
@@ -331,7 +332,7 @@
                                       <c:if test="${cnature eq '69'}">
                                       <div class="form-group input-group col-sm-6">
                                           <label class="has-float-label">
-                                              <input class="form-control" type="number" id="total_club_load" name="total_club_load" placeholder=" " readonly/>
+                                              <input class="form-control" type="number" id="total_club_load_final" name="total_club_load_final" placeholder=" " readonly/>
                                               <span id="lan_tot_load">Total Clubbed Load</span>
                                           </label>
                                       </div>

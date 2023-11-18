@@ -35,7 +35,7 @@ public class CCAppDataModel {
 	private String parent_uscno; 
 	private String club_adl_load; 
 	private String req_load_club;
-	private String total_club_load; 
+	private String total_club_load_final; 
 	private String is_adl_req; // for clubbing of load
 	
 	private String idproof_type;

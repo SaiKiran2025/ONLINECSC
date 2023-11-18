@@ -109,12 +109,14 @@ public class InsertCC {
 		    //for clubbing of load
 			double club_load = 0.0;
 		    if(AppData.getCnature().equals("69")) {
+		    	System.out.println("Total load for cnature 69 is  " + AppData.getTotal_club_load_final());
 		    	req_load = AppData.getReq_load_club();
-		    	AppData.setTotal_load(AppData.getTotal_club_load());
+		    	AppData.setTotal_load(AppData.getTotal_club_load_final());
 		    	AppData.setXukscno(AppData.getParent_uscno());
 		    	club_load = existing_load + Double.parseDouble(AppData.getReq_load_club()) ;
 		    }
 			
+		    System.out.println("Total load for cnature 69 is  " + AppData.getTotal_load());
 		    // PR_NO, PRNO_AT,  DD_NUMBER, DD_DATE, DD_AMOUNT, EMAIL, COMPLAINT_DETAILS, PREV_OFFICE_ID, BANK_NAME, OTH_COM_NAME, REQD_CATEGORY_ID,
 		    //CONS_NEW_NAME, NCONNADD1, NCONNADD2, NCONNADD3, NCONNADD4,CLUB_LOAD,oth_cgst,oth_sgst, +dotcond+\
 		    String query="INSERT INTO COMPLAINT_DETAILS "
@@ -359,7 +361,7 @@ public class InsertCC {
 		    sess.setAttribute("new_title", AppData.getNewtitle_name());
 		    
 		    sess.setAttribute("club_ukscnos", AppData.getXclubbedUscnos());
-		    sess.setAttribute("club_load", AppData.getTotal_club_load());
+		    sess.setAttribute("club_load", AppData.getTotal_club_load_final());
 		    
 		}	
 		

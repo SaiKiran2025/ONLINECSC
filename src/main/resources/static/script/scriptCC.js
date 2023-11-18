@@ -155,9 +155,7 @@ function getPayments(){
 	 var ukscno = document.getElementById("xukscno").value;
 	 var extension ;
 	 var exist_load = parseInt(document.getElementById("xload").value);
-	 var addl_load = parseInt(document.getElementById("additional_load").value);
-	 var tot_load =0;
-	 var tot_club_load = 0;
+	 var addl_load = parseInt(document.getElementById("additional_load").value);	 	 
 	 var cnature = document.getElementById("cnature").value;
 	 $("#total_load").val('');	 
 	 if(getMetric() == "Watts"){
@@ -187,23 +185,20 @@ function getPayments(){
      if(cnature == "40" || cnature == "69"){
      	 extension = document.getElementById("extension").value
      }
-	 if(cnature == "69"){
-	    tot_club_load = parseInt(document.getElementById("total_club_load").value);
-		tot_load = addl_load + tot_club_load;
-		document.adl.total_club_load.value = tot_load;
-		if(document.getElementById("is_adl_req").value == "N")
-			addl_load = "0";
+     if(cnature == "69"){ //clubbing
+		 setClubbedLoad();
 	 }
 	 if(cnature == "79"){ //load deration
-		if(addl_load >= exist_load){
-			toastmsg("Please enter a load less than existing load",'error');	
-			$("#additional_load").focus();
-			return false;
-		}else
-			document.adl.total_load.value = addl_load;
+	 	checkLoadDeration(addl_load, exist_load);
+	 	return false;
 	 }
-	if(extension == 'Y'){
+	if(extension == 'Y' && $("#is_adl_req").val() !== "N"){		
+		$("#est_type").attr('disabled', false);
 		toastmsg("Security Deposit and Development Charges will be collected at the time of Estimate Payment",'success');	
+	}
+	if(extension == 'N'){
+		$("#est_type").val('');
+		$("#est_type").attr('disabled', true);
 	}
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -953,7 +948,11 @@ function getClubUkscnoDetails(id,j){
 						//alert("clbukload"+p);
 					}
 					document.getElementById("total_club_load").value = tot_club_load + each_load ;
+					document.getElementById("total_club_load_final").value = tot_club_load + each_load ;
+					//alert(document.getElementById("total_club_load").value);
 				 }
+				 getPayments();
+				 setClubbedLoad();
 			}else{
 				$("#clbtmb"+j).html("<span class='fas fa-times text-danger'></span>");
 			}
@@ -966,12 +965,38 @@ function getClubUkscnoDetails(id,j){
 }
 
 function clubAdl(){
-	var is_adl_req = document.getElementById("is_adl_req").value;
-	if(is_adl_req == "Y")
-		document.getElementById("additional_load").disabled = false;
-	else
-		document.getElementById("additional_load").disabled = true;
+	var is_adl_req = document.getElementById("is_adl_req").value;	
+	if(is_adl_req == "Y"){
+		$("#additional_load").attr('disabled', false);
+	}
+	if(is_adl_req == "N"){
+		$("#additional_load").attr('disabled', true);
+		$("#additional_load").val('');
+		document.adl.total_club_load_final.value = document.getElementById("total_club_load").value;
+	}
+	getPayments();
 }
+
+function setClubbedLoad(){		 
+	 if(document.getElementById("is_adl_req").value == "Y"){
+		var tot_club_load = 0, tot_load =0;;
+		var addl_load = parseInt(document.getElementById("additional_load").value);
+	    tot_club_load = parseInt(document.getElementById("total_club_load").value);
+		tot_load = addl_load + tot_club_load;
+		document.adl.total_club_load_final.value = tot_load;
+	}
+	if(document.getElementById("is_adl_req").value == "N")
+		addl_load = "0";
+}
+
+function checkLoadDeration(addl_load, exist_load){
+		if(addl_load >= exist_load){
+			toastmsg("Please enter a load less than existing load",'error');	
+			$("#additional_load").focus();
+		}else{
+			document.adl.total_load.value = addl_load;
+		}
+	}
 
 function tempService(cnature){
 	document.adl.cnature.value = cnature;
