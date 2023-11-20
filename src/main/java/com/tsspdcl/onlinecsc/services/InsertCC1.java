@@ -75,6 +75,9 @@ public class InsertCC1 {
 			if(payment_type.equals(""))
 				status = "3";
 			
+			if(AppData.getCnature().equals("56") || AppData.getCnature().equals("67") || AppData.getCnature().equals("89"))
+				status = "1";
+			
 			if(AppData.getCnature().equals("85") || AppData.getCnature().equals("86"))
 				cnature_desc = dbmc.getCtype(AppData.getCnature(),2);
 			else

@@ -109,14 +109,12 @@ public class InsertCC {
 		    //for clubbing of load
 			double club_load = 0.0;
 		    if(AppData.getCnature().equals("69")) {
-		    	System.out.println("Total load for cnature 69 is  " + AppData.getTotal_club_load_final());
 		    	req_load = AppData.getReq_load_club();
 		    	AppData.setTotal_load(AppData.getTotal_club_load_final());
 		    	AppData.setXukscno(AppData.getParent_uscno());
 		    	club_load = existing_load + Double.parseDouble(AppData.getReq_load_club()) ;
 		    }
 			
-		    System.out.println("Total load for cnature 69 is  " + AppData.getTotal_load());
 		    // PR_NO, PRNO_AT,  DD_NUMBER, DD_DATE, DD_AMOUNT, EMAIL, COMPLAINT_DETAILS, PREV_OFFICE_ID, BANK_NAME, OTH_COM_NAME, REQD_CATEGORY_ID,
 		    //CONS_NEW_NAME, NCONNADD1, NCONNADD2, NCONNADD3, NCONNADD4,CLUB_LOAD,oth_cgst,oth_sgst, +dotcond+\
 		    String query="INSERT INTO COMPLAINT_DETAILS "
@@ -128,7 +126,7 @@ public class InsertCC {
 		    			+ " NCONNADD1, NCONNADD2, NCONNADD3, NCONNADD4,"
 		    			+ " REQD_CATEGORY_ID,"
 		    			+ " CONS_NEW_NAME, FATHER_HUSBAND_NAME,"
-		    			+ "	CLUBBEDSERVICES, CLB_ADL_LOAD, CLUB_LOAD,"
+		    			+ "	CLUBBEDSERVICES, CLB_ADL_LOAD, CLUB_LOAD, IS_ADL_REQ,"
 		    			+ " NETMETERFLAG, CTMTRFLAG, PREPAIDFLAG, MTRSIDE_HT, SUBCATCD)"
 		    			+ " VALUES(?,?,?,?,?,?,?,?,?,?,"
 						+ 		 " ?,?,?,?,?,?,?,?,?,?,"
@@ -138,7 +136,7 @@ public class InsertCC {
 						+ 		 " ?,?,?,?, "
 						+ 		 " ?,"
 						+ 		 " ?,?,"
-						+ 		 " ?,?,?,"
+						+ 		 " ?,?,?,?,"
 						+ 		 " ?,?,?,?,?)";
 		    con.setAutoCommit(false);
 			
@@ -202,12 +200,13 @@ public class InsertCC {
 	 		ps.setString ( 48 , AppData.getXclubbedUscnos()); 
 	 		ps.setString ( 49 , AppData.getAdditional_load());
 	 		ps.setDouble ( 50 , club_load);//just clubbed load without additional load
+	 		ps.setString ( 51 , AppData.getIs_adl_req());
 	 		
-	 		ps.setInt	 ( 51 , em.getNetmtr_flag());
-	 		ps.setInt	 ( 52 , em.getCtmtr_flag());
-	 		ps.setInt	 ( 53 , em.getPrepaid_flag());
-	 		ps.setString ( 54 , em.getMeter_ltht_flag());
-	 		ps.setString ( 55 , em.getSubcatcode());
+	 		ps.setInt	 ( 52 , em.getNetmtr_flag());
+	 		ps.setInt	 ( 53 , em.getCtmtr_flag());
+	 		ps.setInt	 ( 54 , em.getPrepaid_flag());
+	 		ps.setString ( 55 , em.getMeter_ltht_flag());
+	 		ps.setString ( 56 , em.getSubcatcode());
 	 		ps.executeUpdate();
 	
 	 		//Insert Documents for address correction, title transfer, load deration
