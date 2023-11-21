@@ -621,32 +621,13 @@ function finalSubmit(stage,event){
 		if(!checkValidation("careOf","Please Enter S/o or W/o",'error')){return false;}	
 	}
 	if(cnature == "69"){
-		if(!checkValidation("club_nos","Please Enter No.of Services to be clubbed",'error')){return false;}	
-		var nos = document.getElementById("club_nos").value;
-		for(var i=1;i<=nos;i++){
-			if(!checkValidation("clbukscno"+i,"Please Enter Enter Unique Service No."+i,'error')){return false;}	
+		if(!checkClubbingInputValidation()) return false;		
+	}
+	if(cnature == "40" || cnature == "69"){
+		if(!checkValidation("extension","Please Choose  whether estimate requried or not ",'error')){return false;}
+		if($("#extension").val() == "Y"){
+			if(!checkValidation("est_type","Please Choose  whether work execution by Department or Consumer",'error')){return false;}
 		}
-		var a =  "", b= "" , req_load=0;
-		for(var i=1;i<=nos;i++){
-			var uscno = document.getElementById("clbukscno"+i).value;
-			var usc_load = parseInt(document.getElementById("clbukload"+i).value);
-			if(i==1){
-				a = uscno;
-			}	
-			if(i>1){
-				b = a + "," + uscno;
-				a = b; 
-				
-				req_load = req_load + usc_load; //for updating req_load in table
-				document.getElementById("req_load_club").value = req_load;
-				
-			}				
-		}
-		document.getElementById("xclubbedUscnos").value =  b; // Setting value for insert query
-		if(!checkValidation("is_adl_req","Please Choose whether additional required or not",'error')){return false;}	
-		var is_adl_req = document.getElementById("is_adl_req").value;
-		if(is_adl_req == "Y")
-			if(!checkValidation("additional_load","Please enter Required Additional Load",'error')){return false;}	
 	}
 	if(cnature == "40" || cnature == "42" || cnature == "69"){
 		if(!checkValidation("gstn_flag","Please Choose  GSTN available or not ",'error')){return false;}
@@ -878,44 +859,12 @@ function getDefaultLanguage1(){
     //document.getElementById("lan_reg_off").innerHTML="Registrar Office";
 }
 
-function getClubUkscnoDetail(j){
-		var uksc=$("#clbukscno"+j).val();
-	for(var k=1;k<j;k++){
-		if($("#clbukscno"+k).val()==uksc){
-			alert("Please Enter Different Unique Service No.");
-			$("#clbukscno"+j).focus();
-			return false();
-		}
-	}
-	if(ukscno)
-		$.ajax({
-        	type: 'GET',
-        	url: "getService/"+ukscno+"/"+scope,
-        	success: function(result)
-        	{
-      			if(result!="E") {
-	        		result=result.split("!");
-	         		$("#dukname"+j).html(result[0]);
-	         		$("#clbukname"+j).val(result[0]);
-	         		$("#dukcat"+j).html(result[1]);
-		         	$("#clbukcat"+j).val(result[1]);
-		         	$("#dukload"+j).html(result[4]);
-		         	$("#clbukload"+j).val(result[4]);
-		         	$("#dukaddr"+j).html(result[5]+","+result[6]+",<br>"+result[7]+","+result[8]+",<br>"+result[9]);
-		         	$("#clbukaddr"+j).val(result[5]+","+result[6]+","+result[7]+","+result[8]+","+result[9]);
-		         	$("#clbtmb"+j).html("<span class='fas fa-thumbs-up text-success'></span>");
-        		} else {
-        		$("#clbtmb"+j).html("<span class='fas fa-times text-danger'></span>");
-        	}
-      	}
-	})
-}
-function getClubUkscnoDetails(id,j){
+function getClubUkscnoDetails(j){
 	var uksc=$("#clbukscno"+j).val();
 	for(var k=1;k<j;k++){
-		if($("#clbukscno"+k).val()==uksc){
-			alert("Please Enter Different Unique Service No.");
-			$("#clbukscno"+j).focus();
+		if($("#clbukscno"+k).val() == uksc){
+			toastmsg("Please Enter Different Unique Service No.",'error');
+			$("#clbukcatcode"+j).focus();
 			return false();
 		}
 	}
@@ -929,14 +878,15 @@ function getClubUkscnoDetails(id,j){
 		         $("#clbukname"+j).val(obj.name);
 		         $("#dukcat"+j).html(obj.category);
 			     $("#clbukcat"+j).val(obj.category);
+			     $("#clbukcatcode"+j).val(obj.catcode);//saving for same category condition
 				 $("#dukload"+j).html(obj.load);
 			     $("#clbukload"+j).val(obj.load);
 			     $("#dukaddr"+j).html(obj.addr1+","+obj.addr2+",<br>"+obj.addr3+","+obj.addr4);
 			     $("#clbukaddr"+j).val(obj.addr1+","+obj.addr2+",<br>"+obj.addr3+","+obj.addr4);	
-			     $("#clbtmb"+j).html("<span class='fas fa-thumbs-up text-success'></span>");	
+			     $("#duksection"+j).html(obj.section_name);
+			     $("#clbuksec"+j).val(obj.section_name);
+			     $("#clbtmb"+j).html("<span class='fa fa-thumbs-up text-success'></span>");	
 			     
-			     //var tot_club_load = parseInt(document.getElementById("clbukload"+j).value); 
-			     //document.getElementById("total_club_load").value = tot_club_load
 			     var nos=$("#club_nos").val();
 				 document.getElementById("total_club_load").value = 0;
 				 
@@ -951,10 +901,17 @@ function getClubUkscnoDetails(id,j){
 					document.getElementById("total_club_load_final").value = tot_club_load + each_load ;
 					//alert(document.getElementById("total_club_load").value);
 				 }
+				 isValidClubbing(j);
 				 getPayments();
 				 setClubbedLoad();
 			}else{
-				$("#clbtmb"+j).html("<span class='fas fa-times text-danger'></span>");
+				$("#clbtmb"+j).html("<span class='fa fa-thumbs-down text-danger'></span>");
+				toastmsg("Invalid Unique Service Number",'error');
+				$("#dukname"+j).html('');
+				$("#dukcat"+j).html('');
+				$("#dukaddr"+j).html('');
+				$("#duksection"+j).html('');
+				$("#dukload"+j).html('');
 			}
          }
             
@@ -962,6 +919,35 @@ function getClubUkscnoDetails(id,j){
     xhttp.open("GET", "getService/"+uksc+"/"+scope, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
+}
+
+function isValidClubbing(j){
+	$("#is_valid_clubbing_cat").val('yes');
+	$("#is_valid_clubbing_sec").val('yes');
+	var catcode=$("#clbukcatcode"+j).val();
+	for(var k=1;k<j;k++){
+		if($("#clbukcatcode"+k).val() !== catcode){
+			toastmsg("All the clubbing services must be of same category",'error');	
+			$("#clbukcatcode"+j).focus();
+			$("#dukcat"+j).addClass("text-danger");
+			$("#is_valid_clubbing_cat").val('no');
+			return false;
+		}else{
+			$("#dukcat"+j).removeClass("text-danger");
+		}
+	 }
+	var section=$("#clbuksec"+j).val();
+	for(var k=1;k<j;k++){
+		if($("#clbuksec"+k).val() !== section){
+			toastmsg("All the clubbing services must belong to same section",'error');	
+			$("#clbuksec"+j).focus();
+			$("#duksection"+j).addClass("text-danger");
+			$("#is_valid_clubbing_sec").val('no');
+			return false;
+		}else{
+			$("#duksection"+j).removeClass("text-danger");
+		}
+	 }
 }
 
 function clubAdl(){
@@ -980,13 +966,11 @@ function clubAdl(){
 function setClubbedLoad(){		 
 	 if(document.getElementById("is_adl_req").value == "Y"){
 		var tot_club_load = 0, tot_load =0;;
-		var addl_load = parseInt(document.getElementById("additional_load").value);
+		var addl_load = $("#additional_load").val() ? parseInt(document.getElementById("additional_load").value) : 0;
 	    tot_club_load = parseInt(document.getElementById("total_club_load").value);
 		tot_load = addl_load + tot_club_load;
 		document.adl.total_club_load_final.value = tot_load;
 	}
-	if(document.getElementById("is_adl_req").value == "N")
-		addl_load = "0";
 }
 
 function checkLoadDeration(addl_load, exist_load){
@@ -996,7 +980,49 @@ function checkLoadDeration(addl_load, exist_load){
 		}else{
 			document.adl.total_load.value = addl_load;
 		}
+}
+
+function checkClubbingInputValidation(){
+	if(!checkValidation("club_nos","Please Enter No.of Services to be clubbed",'error')){return false;}	
+	
+	var nos = document.getElementById("club_nos").value;
+	for(var i=1;i<=nos;i++){
+		if(!checkValidation("clbukscno"+i,"Please Enter Unique Service No."+i,'error')){return false;}	
+	}	
+	
+	if($("#is_valid_clubbing_cat").val() == "no"){
+		toastmsg('All the clubbing services must be of same category','error');
+		return false;
 	}
+	if($("#is_valid_clubbing_sec").val() == "no"){
+		toastmsg('All the clubbing services must belong to the same section','error');
+		return false;
+	}
+	
+	if(!checkValidation("is_adl_req","Please Choose whether additional required or not",'error')){return false;}	
+	var is_adl_req = document.getElementById("is_adl_req").value;
+	if(is_adl_req == "Y")
+		if(!checkValidation("additional_load","Please Enter Required Additional Load",'error')){return false;}	
+				
+	var a =  "", b= "" , req_load=0;
+	for(var i=1;i<=nos;i++){
+		var uscno = document.getElementById("clbukscno"+i).value;
+		var usc_load = parseInt(document.getElementById("clbukload"+i).value);
+		if(i==1){
+			a = uscno;
+		}	
+		if(i>1){
+			b = a + "," + uscno;
+			a = b; 
+			
+			req_load = req_load + usc_load; 
+			document.getElementById("req_load_club").value = req_load; //sending hidden parametet to insertCC
+			
+		}				
+	}
+	document.getElementById("xclubbedUscnos").value =  b; // sending clubbed uscnos string to insertCC
+	return true;
+}
 
 function tempService(cnature){
 	document.adl.cnature.value = cnature;

@@ -131,6 +131,8 @@
 		<input type="hidden" name="xclubbedUscnos" id="xclubbedUscnos">
 		<input type="hidden" name="req_load_club" id="req_load_club">
 		<input type="hidden" name="total_club_load" id="total_club_load">
+		<input type="hidden" name="is_valid_clubbing_cat" id="is_valid_clubbing_cat">
+		<input type="hidden" name="is_valid_clubbing_sec" id="is_valid_clubbing_sec">
 		
 		<!-- category-section start -->
         <section class="category-section category-page mr-0 pt-60 pb-90">
@@ -283,6 +285,7 @@
                    			 	 	<th>Name</th>
                    			 	 	<th>Address</th>
                    			 	 	<th>Category</th>
+                   			 	 	<th>Section</th>
                    			 	 	<th>Load</th>
                    			 	 </tr>
                    			 	 </table>
@@ -317,7 +320,8 @@
                                  	<c:if test="${cnature eq '40' || cnature eq '69' || cnature eq '79'}">
                                  		<div class="form-group input-group col-sm-6">
                                           <label class="has-float-label">
-                                              <input class="form-control" type="number" id="additional_load" name="additional_load" onblur="getPayments()" placeholder=" " />
+                                              <input class="form-control" type="number" min=1 id="additional_load" name="additional_load" 
+                                              			onblur="getPayments()" oninput="validity.valid||(value='');" placeholder=" " />
                                               <span id="lan_req_load">Additional Load Required in Watts</span>
                                           </label>
                                      	</div>
@@ -466,7 +470,8 @@
                                      <c:if test="${cnature ne '48'}">                               
                                      <div class="form-group input-group col-sm-6">
                                           <label class="has-float-label">
-                                              <input class="form-control" type="number" id="pincode" name="pincode" placeholder=" " />
+                                              <input class="form-control" type="number"  min=0  id="pincode" name="pincode" placeholder=" " 
+                                              onKeyPress="if(this.value.length==6) return false;" oninput="validity.valid ||(value='');"/>
                                               <span>PinCode</span>
                                           </label>
                                      </div> 
@@ -693,15 +698,17 @@
 				    	var cell3 = row.insertCell(2);
 				    	var cell4 = row.insertCell(3);
 				    	var cell5 = row.insertCell(4);
-				    	cell1.innerHTML="<td><div class='col-md-12'><div class='input-group mb-4 form-group' > <input id='clbukscno"+i+"' type='text' name='clbukscno' class='form-control' placeholder='Unique Service No'  required onblur='getClubUkscnoDetails(this.id,"+i+")' inputmode='numeric' pattern='[0-9]*'/><span id='clbtmb"+i+"'></span></div></div></td>";
+				    	var cell6 = row.insertCell(5);
+				    	cell1.innerHTML="<td><div class='col-md-12'><div class='input-group mb-4 form-group' > <input id='clbukscno"+i+"' type='text' name='clbukscno' class='form-control' placeholder='Unique Service No'  required onblur='getClubUkscnoDetails("+i+")' inputmode='numeric' pattern='[0-9]*'/><span class='mt-2 ml-1' style='font-size:18px' id='clbtmb"+i+"'><i class='fa fa-search'></i></span></div></div></td>";
 				    	cell2.innerHTML="<td><span class='text-bold text-success' id='dukname"+i+"'></span><input type='hidden'  id='clbukname"+i+"' name='clbukname'></td>";
 				    	cell3.innerHTML="<td><span class='text-bold text-success' id='dukaddr"+i+"'></span><input type='hidden'  id='clbukaddr"+i+"' name='clbukaddr'></td>";
-				    	cell4.innerHTML="<td><span class='text-bold text-success' id='dukcat"+i+"'></span><input type='hidden'  id='clbukcat"+i+"' name='clbukcat'></td>";
-				    	cell5.innerHTML="<td><span class='text-bold text-success' id='dukload"+i+"'></span><input type='hidden' id='clbukload"+i+"' name='clbukload'></td>";
+				    	cell4.innerHTML="<td><span class='text-bold text-success' id='dukcat"+i+"'></span><input type='hidden'  id='clbukcat"+i+"' name='clbukcat'><input type='hidden'  id='clbukcatcode"+i+"' name='clbukcatcode'></td>";
+				    	cell5.innerHTML="<td><span class='text-bold text-success' id='duksection"+i+"'></span><input type='hidden'  id='clbuksec"+i+"' name='clbuksec'></td>";
+				    	cell6.innerHTML="<td><span class='text-bold text-success' id='dukload"+i+"'></span><input type='hidden' id='clbukload"+i+"' name='clbukload'></td>";
 					}
 					var parent_uscno = document.getElementById("parent_uscno").value;
 					document.getElementById("clbukscno1").value = parent_uscno;
-					getClubUkscnoDetails("clbukscno1",1);
+					getClubUkscnoDetails(1);
 					$("#clbukscno1").prop('readonly', true);
 				}
 			}
